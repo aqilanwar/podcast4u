@@ -18,6 +18,8 @@
    <script src="store.js" async></script>
 
    <!-- bootstrap css -->
+   <link href="css/font-awesome.min.css" rel="stylesheet">
+   <!-- bootstrap css -->
    <link rel="stylesheet" href="css/bootstrap.min.css">
    <!-- style css -->
    <link rel="stylesheet" href="css/style.css">
@@ -161,15 +163,10 @@
                               <li> <a href="index.html">Home</a> </li>
                               <li> <a href="#abt">About us</a> </li>
                               <li><a href="#pkg">PACKAGE</a></li>
+                              <!--side nav cart-->
                               <div id="mySidenav" class="sidenav">
                                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                                  <a class="container-title" style="color: rgb(255, 255, 255);">Your Cart</a>
-                                 <!---JS  -->
-                                 <div class="container-purchase">
-
-                                 </div>
-                                 <!---JS  -->
-
                                  <div class="container-purchase">
                                     <div class="image-purchase"><img src="logo/1.png"></div>
                                     <div class="text-purchase">
@@ -212,13 +209,18 @@
                                  </div>
                               </div>
                               <li><a href="https://wa.link/pv35gn" target="_blank">DIRECT MESSAGE now</a></li>
-
-                              <li><a id="cart" href="#" onclick="openNav()"><svg xmlns="http://www.w3.org/2000/svg"
-                                       width="16" height="16" fill="currentColor" class="bi bi-cart2"
-                                       viewBox="0 0 16 16">
-                                       <path fill-rule="evenodd"
-                                          d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-                                    </svg>2</a></li>
+                              <li>
+                                 
+                                 <a class="cart" id="cart" href="#" onclick="openNav()">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="16" height="16" fill="currentColor" class="bi bi-cart2"
+                                    viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                       d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                                    </svg>
+                                    <span></span>
+                                 </a>
+                              </li>
                            </ul>
                         </nav>
                      </div>
@@ -475,33 +477,8 @@
          document.getElementById("mySidenav").style.width = "0";
       }
 
-      function addItemToCart(title, price, imageSrc) {
-      var cartRow = document.createElement('div')
-      cartRow.classList.add('container-purchase')
-      var cartItems = document.getElementsByClassName('card-text')[0]
-      var cartItemNames = cartItems.getElementsByClassName('card-text')
-      for (var i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText == title) {
-            alert('This item is already added to the cart')
-            return
-        }
-    }
-    var cartRowContents = `
-        <div class="container-purchase">
-         <div class="image-purchase"><img src="${imageSrc}"></div>
-         <div class="text-purchase">
-            <a href="">${price}</a>
-            <p>RM 5.00</p>
-            <a class="symbol" style="display:inline-block; color:rgb(12, 209, 183); margin-left:20%;">-</a>    
-               <p style="float:center;">10</p>
-               <a class="symbol" style="display:inline-block; color:rgb(12, 209, 183);">+</a>
-               </div>
-               </div>`
-      cartRow.innerHTML = cartRowContents
-      cartItems.append(cartRow)
-      cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem)
-   }
    </script>
+   <script src="cart.js"></script>
 </body>
 
 </html>
