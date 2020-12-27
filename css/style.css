@@ -20,7 +20,7 @@
      box-sizing: border-box !important;
 }
  body {
-     color: #666666;
+     color: #000000;
      font-size: 14px;
      font-family: 'poppins', sans-serif;
      line-height: 1.80857;
@@ -28,7 +28,7 @@
      overflow-x: hidden;
 }
  a {
-     color: #1f1f1f;
+     color: #000000;
      text-decoration: none !important;
      outline: none !important;
      -webkit-transition: all .3s ease-in-out;
@@ -90,7 +90,7 @@
      line-height: 24px;
 }
  a {
-     color: #222222;
+     color: #000000;
      text-decoration: none;
      outline: none !important;
 }
@@ -1602,10 +1602,10 @@ ul.locat_icon li a{
 
 .Books p {
      padding: 30px 46px;
-color: #141012;
-font-size: 17px;
-line-height: 30px;
-text-align: center;
+    color: #141012;
+    font-size: 17px;
+    line-height: 30px;
+    text-align: center;
 }
 
  .contact_form {
@@ -1695,11 +1695,11 @@ background-position: center center;
      font-size: 25px;
      line-height: 30px;
      font-weight: 600;
-border-bottom: #fff solid 1px;
-    border-bottom-width: 1px;
-border-width: 1px;
-display: inline-block;
-padding-bottom: 2px;}
+    border-bottom: #fff solid 1px;
+        border-bottom-width: 1px;
+    border-width: 1px;
+    display: inline-block;
+    padding-bottom: 2px;}
  .coa {
     color: #12dc12;
 }
