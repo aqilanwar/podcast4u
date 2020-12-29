@@ -70,7 +70,7 @@
         /* Set rates + misc */
         var taxRate = 0.05;
         var fadeTime = 300;
-
+        
         $('.pass-quantity input').change(function() {
           updateQuantity(this);
         });
@@ -164,12 +164,12 @@
             </div>
             <div class="product-price d-none">50</div>
             <div class="pass-quantity col-lg-3 col-md-4 col-sm-3">
-              <label for="pass-quantity" class="pass-quantity">${item.quantity}</label>
-              <input class="form-control" type="number" value="1" min="1">
+              <label for="pass-quantity" class="pass-quantity">Quantity</label>
+              <input class="form-control" type="number" value="${item.incart}" min="1">
             </div>
             <div class="col-lg-2 col-md-1 col-sm-2 product-line-price pt-4">
               <label for="pass-quantity" class="pass-quantity">RM</label>
-              <span class="product-line-price">50.00
+              <span class="product-line-price">5.00
               </span>
             </div>
             <div class="remove-item pt-2">
