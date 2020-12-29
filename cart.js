@@ -53,7 +53,8 @@ let products = [
 ]
 for(let i=0; i< carts.length; i++) {
     carts[i].addEventListener('click', () =>{
-        cartNumbers();
+        cartNumbers(products[i]);
+        totalCost(products[i]);
     })
 }
 
@@ -65,9 +66,10 @@ function onLoadCartNumbers(){
     }
 }
 
-function cartNumbers() {
+function cartNumbers(product) {
+    console.log("The product clicked is ", product)
     let productNumbers = localStorage.getItem('cartNumbers');
-    
+
     productNumbers = parseInt(productNumbers);
 
     if(productNumbers) {
@@ -79,6 +81,70 @@ function cartNumbers() {
         document.querySelector('.cart span').textContent = 1;
     }
 
+    setItems(product) ;
+}
+
+function setItems(product) {
+  
+    let cartItems = localStorage.getItem('productsInCart');
+    cartItems = JSON.parse(cartItems);
+
+    if(cartItems != null){
+        if(cartItems[product.tag] == undefined) {
+            cartItems = {
+                ...cartItems,
+                [product.tag]: product
+            }
+        }
+        cartItems[product.tag].incart += 1;
+    } else {
+        product.incart = 1;
+        cartItems = {
+            [product.tag]: product
+        }
+    }
+    
+    localStorage.setItem("productsInCart", JSON.stringify(cartItems ));
+}
+
+function totalCost(product){
+    let cartCost = localStorage.getItem('totalCost');
+    
+    if(cartCost != null) {
+        cartCost = parseInt(cartCost);
+        localStorage.setItem("totalCost" , cartCost + product.price);
+    } else {
+        localStorage.setItem("totalCost" , product.price);
+    }
+}
+
+function displayCart() {
+    let cartItems = localStorage.getItem("productsInCart") ;
+    cartItems = JSON.parse(cartItems);
+    let productContainer = document.querySelector(".cartNav");
+
+    console.log(cartItems);
+    if(cartItems && productContainer ) {
+        productContainer.innerHTML = '';
+        Object.values(cartItems).map(item => {
+            productContainer.innerHTML += `
+            <div class="container-purchase">
+                <div class="image-purchase">
+                    <img src="logo/${item.tag}.png">
+                </div>
+
+                <div class="text-purchase">
+                    <a href="">${item.name}</a>
+                    <p>RM${item.price}</p>
+                    <a class="symbol" href="javascript:closeNav();" style="display:inline-block; color:rgb(12, 209, 183); margin-left:20%;">-</a>
+                    <p style="float:center;">${item.incart}</p>
+                    <a class="symbol" href="javascript:closeNav();" style="display:inline-block; color:rgb(12, 209, 183);">+</a>
+                </div>
+            </div>
+            `
+        });
+    }
 }
 
 onLoadCartNumbers();
+displayCart();

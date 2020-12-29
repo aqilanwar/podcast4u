@@ -1576,7 +1576,7 @@ ul.locat_icon li a{
 
 .box {display: flex; align-items: center; flex-wrap: wrap; text-align: center;}
 .Books {
-     background-color: #fff;
+     background-color: rgb(250, 255, 174);
      
 }
  .Books .titlepage {
