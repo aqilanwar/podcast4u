@@ -169,7 +169,7 @@
                                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                                  <a class="container-title" style="color: rgb(255, 255, 255);">Your Cart</a>
                                  <div class="cartNav">
-                                    
+
                                  </div>
                               </div> 
                               <!-- end nav cart -->
@@ -244,9 +244,9 @@
             <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
                <div class="about-box">
                   <figure>
-                     <img style="filter: invert(100%);-webkit-filter: invert(100%); padding-top:50px" src="images/logo.png" alt="img" />  
+                     <img style="filter: invert(100%);-webkit-filter: invert(100%); padding-top: 50px;" src="images/logo.png" alt="img" />  
                   </figure>
-               <div style="padding-left:30%;"class="button_section"> <a class="main_bt" href="#abt">Read More</a> </div>
+               </div>
             </div>
          </div>
       </div>
@@ -328,7 +328,7 @@
                <div class="card-body">
                   <h1 style="text-align: center; " class="card-title" class="card-title">2.Mystic Shadow (horor)</h1>
                   <p class="card-text">you can get to hear about the things we cant see but we know they around us.</p>
-                  <div class="button_section"> <a class="buy" href="#">Add to cart <svg
+                  <div class="button_section"> <a class="buy" href="javascript:openNav();">Add to cart <svg
                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-cart" viewBox="0 0 16 16">
                            <path
@@ -342,7 +342,7 @@
                   <h1 style="text-align: center;" class="card-title" class="card-title">3.Politic Crisis</h1>
                   <p class="card-text">get to know whats going on in the politic arena inside and outside of the country
                   </p>
-                  <div class="button_section"> <a class="buy" href="#">Add to cart <svg
+                  <div class="button_section"> <a class="buy" href="javascript:openNav();">Add to cart <svg
                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-cart" viewBox="0 0 16 16">
                            <path
@@ -356,7 +356,7 @@
                   <h1 style="text-align: center;" class="card-title" class="card-title">4.Mysterious Incidence</h1>
                   <p class="card-text">remember the missing case of MH370? you can get many more mysterious incidence
                      here</p>
-                  <div class="button_section"> <a class="buy" href="#">Add to cart <svg
+                  <div class="button_section"> <a class="buy" href="javascript:openNav();">Add to cart <svg
                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-cart" viewBox="0 0 16 16">
                            <path
@@ -370,7 +370,7 @@
                   <h1 style="text-align: center;" class="card-title" class="card-title">5.Don't Giveup </h1>
                   <p class="card-text">thinking about giving up on life. here are some motivation to keep you going and
                      not give up</p>
-                  <div class="button_section"> <a class="buy" href="#">Add to cart <svg
+                  <div class="button_section"> <a class="buy" href="javascript:openNav();">Add to cart <svg
                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-cart" viewBox="0 0 16 16">
                            <path
@@ -384,7 +384,7 @@
                   <h1 style="text-align: center;" class="card-title" class="card-title">6.Crime Revealed</h1>
                   <p class="card-text">listen to real life crime stories that happen in the world </p>
                   <div class="card-footer">
-                     <div class="button_section"> <a class="buy" href="#">Add to cart <svg
+                     <div class="button_section"> <a class="buy" href="javascript:openNav();">Add to cart <svg
                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-cart" viewBox="0 0 16 16">
                         <path
@@ -400,7 +400,7 @@
                   <p class="card-text">your sole needs some food also. feed it by listening to the stories in this
                      podcast</p>
                      <div class="card-footer">
-                        <div class="button_section"> <a class="buy" href="#">Add to cart <svg
+                        <div class="button_section"> <a class="buy" href="javascript:openNav();">Add to cart <svg
                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-cart" viewBox="0 0 16 16">
                            <path
@@ -416,7 +416,7 @@
                   <p class="card-text">listen to stories about the secret of the word. where some people go for an extra
                      mile to find interesting stories to bring it to you exclusively</p>
                      <div class="card-footer">
-                        <div class="button_section"> <a class="buy" href="#">Add to cart <svg
+                        <div class="button_section"> <a class="buy" href="javascript:openNav();">Add to cart <svg
                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-cart" viewBox="0 0 16 16">
                            <path
@@ -453,6 +453,10 @@
 
       function closeNav() {
          document.getElementById("mySidenav").style.width = "0";
+      }
+
+      body.onload = function(){
+         let x = closeNav();
       }
 
    </script>

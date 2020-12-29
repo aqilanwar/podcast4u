@@ -123,11 +123,12 @@ function displayCart() {
     cartItems = JSON.parse(cartItems);
     let productContainer = document.querySelector(".cartNav");
 
-    console.log(cartItems);
     if(cartItems && productContainer ) {
         productContainer.innerHTML = '';
         Object.values(cartItems).map(item => {
             productContainer.innerHTML += `
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a class="container-title" style="color: rgb(255, 255, 255);">Your Cart</a>
             <div class="container-purchase">
                 <div class="image-purchase">
                     <img src="logo/${item.tag}.png">
