@@ -924,13 +924,11 @@ ul.top_icon li a{ color: #fff;
      position: relative;
      border-bottom: solid #eee 1px;
 }
- .main-menu ul>li .sub-down li a::before {
-}
+
  .main-menu ul>li .sub-down li a:hover {
      color: #111111;
 }
- .main-menu ul>li .sub-down li a:hover::before {
-}
+
  .main-menu ul li:first-child {
      margin-left: 0;
 }
@@ -1000,8 +998,7 @@ ul.top_icon li a{ color: #fff;
      right: 0;
      padding: 15px 0px;
 }
- .sub-full {
-}
+
  .simple-down {
      padding: 15px;
 }
@@ -1489,11 +1486,7 @@ ul.locat_icon li a{
 }
 
 .black {color: #141012 }
-.about .about-box {
 
-    
-
-}
  .about .about-box figure {
     margin: 0px;
      
@@ -1576,7 +1569,7 @@ ul.locat_icon li a{
 
 .box {display: flex; align-items: center; flex-wrap: wrap; text-align: center;}
 .Books {
-     background-color: rgb(250, 255, 174);
+     background-color: #ffffff;
      
 }
  .Books .titlepage {
