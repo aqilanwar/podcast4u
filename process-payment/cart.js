@@ -122,7 +122,6 @@ function displayCart() {
     let cartItems = localStorage.getItem("productsInCart") ;
     let totalCost = localStorage.getItem("totalCost") ;
 
-    console.log(totalCost);
     cartItems = JSON.parse(cartItems);
     let productContainer = document.querySelector(".cartNav");
 
@@ -148,7 +147,7 @@ function displayCart() {
         });
         productContainer.innerHTML += `
         <div class="checkout">
-            <button type="button" onclick="location.href='process-payment/cart.html';"class="btn btn-outline-info">${totalCost}</button>
+            <button type="button" class="btn btn-outline-info">${totalCost}</button>
         </div>
         `;
     }
@@ -167,7 +166,13 @@ $(document).on("click", ".symbol", function() {
  //   $(this).parent().parent().remove(); 
 //});
 
-
+function onLoadtotal(){
+    let productNumbers = localStorage.getItem('totalCost');
+    if(productNumbers){
+        document.querySelector('.checkout button').textContent = productNumbers;
+    }
+    
+}
 
 
 $(document).ready(function(){
@@ -181,5 +186,6 @@ $(document).ready(function(){
 
  });
 
+onLoadtotal();
 onLoadCartNumbers();
 displayCart();
