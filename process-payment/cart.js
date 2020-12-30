@@ -155,6 +155,7 @@ function displayCart() {
 
 
 
+
 //delete cart
 $(document).on("click", ".symbol", function() { 
     $(this).parent().parent().remove(); 
@@ -165,7 +166,6 @@ $(document).on("click", ".symbol", function() {
 //$(document).on("click", ".symbol", function() { 
  //   $(this).parent().parent().remove(); 
 //});
-
 function onLoadtotal(){
     let productNumbers = localStorage.getItem('totalCost');
     if(productNumbers){

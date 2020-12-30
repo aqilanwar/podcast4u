@@ -90,8 +90,6 @@
           });
 
           /* Calculate totals */
-
-
           var tax = subtotal * taxRate;
           var total = subtotal + tax;
 
@@ -141,61 +139,49 @@
     </script>
 
     <script>
+    function pulldata(){
+        let calldata = localStorage.getItem("productsInCart");
+        
+        calldata = JSON.parse(calldata);
+        let container = document.querySelector(".cartNav");
+        
+        if(calldata && container) {
+          container.innerHTML = '';
 
-function removeFromStorage(){
+            Object.values(calldata).map(item => {
+              container.innerHTML += `
+              <div class="border border-gainsboro p-3 mt-3 clearfix item">
+                <div class="text-lg-left">
+                  <img src="logo/${item.tag}.png" width="80px" alt="">
+                </div>
+                <div class="col-lg-5 col-5 text-lg-left">
+                  <h3 class="h6 mb-0">${item.name}<br>
+                    <small>RM 5.00/ea</small>
+                  </h3>
+                </div>
+                <div class="product-price d-none">50</div>
+                <div class="pass-quantity col-lg-3 col-md-4 col-sm-3">
+                  <label for="pass-quantity" class="pass-quantity">Quantity</label>
+                  <input class="form-control" type="number" value="${item.incart}" min="1">
+                </div>
+                <div class="col-lg-2 col-md-1 col-sm-2 product-line-price pt-4">
+                  <label for="pass-quantity" class="pass-quantity">RM</label>
+                  <span class="product-line-price">5.00
+                  </span>
+                </div>
+                <div class="remove-item pt-2">
+                  <button class="remove-product btn-danger">
+                    Delete
+                  </button>
+                </div>
+              </div>
+          `;
+        
+          });
 
-  let json = JSON.parse(localStorage["productsInCart"]);
-  console.log(json[product.cart]);
-  for (i=0;i<json.length;i++)
-  if (json[i].tag == 'pc') json.splice(i,1);
-  localStorage["productsInCart"] = JSON.stringify(json);
-
-}  
-
-function pulldata(){
-    let calldata = localStorage.getItem("productsInCart");
-    
-    calldata = JSON.parse(calldata);
-    let container = document.querySelector(".cartNav");
-    
-    if(calldata && container) {
-      container.innerHTML = '';
-
-        Object.values(calldata).map(item => {
-           container.innerHTML += `
-          <div class="border border-gainsboro p-3 mt-3 clearfix item">
-            <div class="text-lg-left">
-              <img src="logo/${item.tag}.png" width="80px" alt="">
-            </div>
-            <div class="col-lg-5 col-5 text-lg-left">
-              <h3 class="h6 mb-0">${item.name}<br>
-                <small>RM 5.00/ea</small>
-              </h3>
-            </div>
-            <div class="product-price d-none">50</div>
-            <div class="pass-quantity col-lg-3 col-md-4 col-sm-3">
-              <label for="pass-quantity" class="pass-quantity">Quantity</label>
-              <input class="form-control" type="number" value="${item.incart}" min="1">
-            </div>
-            <div class="col-lg-2 col-md-1 col-sm-2 product-line-price pt-4">
-              <label for="pass-quantity" class="pass-quantity">RM</label>
-              <span class="product-line-price">5.00
-              </span>
-            </div>
-            <div class="remove-item pt-2">
-              <button class="remove-product btn-danger">
-                Delete
-              </button>
-            </div>
-          </div>
-      `;
-    
-      });
-
-  }
-}
-  removeFromStorage();
-  pulldata();
+      }
+    }
+    pulldata();
     </script>
   </body>
 

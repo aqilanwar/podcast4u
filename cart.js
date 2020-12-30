@@ -1,5 +1,4 @@
 let carts =  document.querySelectorAll('.buy');
-
 let products = [
     {
         name: 'Football Maniac',
@@ -55,12 +54,13 @@ for(let i=0; i< carts.length; i++) {
     carts[i].addEventListener('click', () =>{
         cartNumbers(products[i]);
         totalCost(products[i]);
+        displayCart();
     })
 }
 
+
 function onLoadCartNumbers(){
     let productNumbers = localStorage.getItem('cartNumbers');
-    
     if(productNumbers){
         document.querySelector('.cart span').textContent = productNumbers;
     }
@@ -107,6 +107,29 @@ function setItems(product) {
     localStorage.setItem("productsInCart", JSON.stringify(cartItems));
 }
 
+function resetItems(product) {
+  
+    let cartItems = localStorage.getItem('productsInCart');
+    cartItems = JSON.parse(cartItems);
+
+    if(cartItems != null){
+        if(cartItems[product.tag] == undefined) {
+            cartItems = {
+                ...cartItems,
+                [product.tag]: product
+            }
+        }
+        cartItems[product.tag].incart -= 1;
+    } else {
+        product.incart = 1;
+        cartItems = {
+            [product.tag]: product
+        }
+    }
+    
+    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+}
+
 function totalCost(product){
     let cartCost = localStorage.getItem('totalCost');
     
@@ -120,9 +143,7 @@ function totalCost(product){
 
 function displayCart() {
     let cartItems = localStorage.getItem("productsInCart") ;
-    let totalCost = localStorage.getItem("totalCost") ;
 
-    console.log(totalCost);
     cartItems = JSON.parse(cartItems);
     let productContainer = document.querySelector(".cartNav");
 
@@ -139,9 +160,9 @@ function displayCart() {
                 <div class="text-purchase">
                     <a href="" id="${item.tag}">${item.name}</a>
                     <p>RM${item.price}</p>
-                    <a class="symbolminus" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183); margin-left:20%;">-</a>
+                    <a class="symbolminus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183); margin-left:20%;">-</a>
                     <p style="float:center;">${item.incart}</p>
-                    <a class="symbolplus" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183);">+</a>
+                    <a class="symbolplus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183);">+</a>
                 </div>
             </div>
             `;
@@ -162,11 +183,54 @@ function displayCart() {
     }
 }
 
-
-
 //delete cart
-$(document).on("click", ".symbol", function() { 
-    $(this).parent().parent().remove(); 
+$(document).on("click", ".symbolplus", function() { 
+
+    let totalCart = localStorage.getItem("cartNumbers");
+    totalCart = parseInt(totalCart);
+    totalCart += 1;
+    localStorage.setItem('cartNumbers',totalCart);
+    //onLoadCartNumbers();
+    
+    let cart = localStorage.getItem("productsInCart");
+    cart = JSON.parse(cart);
+    let x = Object.values(cart).map(item => {
+        if(item.tag == this.id){
+            item.incart += 1;
+            console.log(item.incart);
+            localStorage.setItem("productsInCart", JSON.stringify(cart));
+            displayCart();
+            onLoadCartNumbers();
+
+        }
+    })
+});
+
+$(document).on("click", ".symbolminus", function() { 
+    let cart = localStorage.getItem("productsInCart");
+    cart = JSON.parse(cart);
+    let x = Object.values(cart).map(item => {
+        if(item.incart > 1){
+            if(item.tag == this.id){
+                item.incart -= 1;
+                console.log(item.incart);
+                localStorage.setItem("productsInCart", JSON.stringify(cart));
+                displayCart();
+
+                let totalCart = localStorage.getItem("cartNumbers");
+                totalCart = parseInt(totalCart);
+                totalCart -= 1;
+                localStorage.setItem('cartNumbers',totalCart);
+                onLoadCartNumbers();
+            }
+        }else{
+               $(this).parent().parent().remove(); 
+
+            //remove
+        }
+
+    })
+   // console.log(x);
 });
 
 //add or minus cart
@@ -174,20 +238,9 @@ $(document).on("click", ".symbol", function() {
 //$(document).on("click", ".symbol", function() { 
  //   $(this).parent().parent().remove(); 
 //});
+//
 
 
-
-
-$(document).ready(function(){
-    $(".symbolplus").click(function() {
-        alert("-");
-    });
-
-    $(".symbolminus").click(function() {
-        alert("-");
-    });
-
- });
 
 onLoadCartNumbers();
 displayCart();
