@@ -141,13 +141,23 @@
     </script>
 
     <script>
-      function pulldata(){
+
+function removeFromStorage(){
+
+  let json = JSON.parse(localStorage["productsInCart"]);
+  console.log(json[product.cart]);
+  for (i=0;i<json.length;i++)
+  if (json[i].tag == 'pc') json.splice(i,1);
+  localStorage["productsInCart"] = JSON.stringify(json);
+
+}  
+
+function pulldata(){
     let calldata = localStorage.getItem("productsInCart");
     
     calldata = JSON.parse(calldata);
     let container = document.querySelector(".cartNav");
     
-    console.log(calldata);
     if(calldata && container) {
       container.innerHTML = '';
 
@@ -184,6 +194,7 @@
 
   }
 }
+  removeFromStorage();
   pulldata();
     </script>
   </body>
