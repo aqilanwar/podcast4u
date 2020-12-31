@@ -7,7 +7,7 @@ let products = [
         incart: 0
     },
     {
-        name: 'Mystic Shadow (horor)',
+        name: 'Mystic Shadow',
         tag: 'ms',
         price: 5,
         incart: 0
@@ -48,7 +48,6 @@ let products = [
         price: 5,
         incart: 0
     }
-   
 ]
 for(let i=0; i< carts.length; i++) {
     carts[i].addEventListener('click', () =>{
@@ -63,8 +62,7 @@ function onLoadCartNumbers(){
     let productNumbers = localStorage.getItem('cartNumbers');
     if(productNumbers){
         document.querySelector('.cart span').textContent = productNumbers;
-    }
-    
+    } 
 }
 
 function cartNumbers(product) {
@@ -97,29 +95,6 @@ function setItems(product) {
             }
         }
         cartItems[product.tag].incart += 1;
-    } else {
-        product.incart = 1;
-        cartItems = {
-            [product.tag]: product
-        }
-    }
-    
-    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-}
-
-function resetItems(product) {
-  
-    let cartItems = localStorage.getItem('productsInCart');
-    cartItems = JSON.parse(cartItems);
-
-    if(cartItems != null){
-        if(cartItems[product.tag] == undefined) {
-            cartItems = {
-                ...cartItems,
-                [product.tag]: product
-            }
-        }
-        cartItems[product.tag].incart -= 1;
     } else {
         product.incart = 1;
         cartItems = {
@@ -183,7 +158,7 @@ function displayCart() {
     }
 }
 
-//delete cart
+//plus cart
 $(document).on("click", ".symbolplus", function() { 
 
     let totalCart = localStorage.getItem("cartNumbers");
@@ -201,22 +176,23 @@ $(document).on("click", ".symbolplus", function() {
             localStorage.setItem("productsInCart", JSON.stringify(cart));
             displayCart();
             onLoadCartNumbers();
-
         }
     })
 });
 
+//delete cart
 $(document).on("click", ".symbolminus", function() { 
     let cart = localStorage.getItem("productsInCart");
-    cart = JSON.parse(cart);
+    cart = JSON.parse(cart);  
     let x = Object.values(cart).map(item => {
         if(item.incart > 1){
             if(item.tag == this.id){
+                //update product container
                 item.incart -= 1;
-                console.log(item.incart);
                 localStorage.setItem("productsInCart", JSON.stringify(cart));
                 displayCart();
-
+                console.log(item.incart);
+                //update cart numbers
                 let totalCart = localStorage.getItem("cartNumbers");
                 totalCart = parseInt(totalCart);
                 totalCart -= 1;
@@ -224,13 +200,27 @@ $(document).on("click", ".symbolminus", function() {
                 onLoadCartNumbers();
             }
         }else{
-               $(this).parent().parent().remove(); 
+            if(item.tag == this.id){
+               //update quantity containerd
+               //console.log(cart[this.id]);
+               console.log(cart[this.id].incart -= 1);
+               delete cart[this.id];
+               //console.log(item.incart);
+               //console.log(cart);
+               localStorage.setItem('productsInCart', JSON.stringify(cart));
 
-            //remove
+               //update cart numbers
+               let totalCart = localStorage.getItem("cartNumbers");
+               totalCart = parseInt(totalCart);
+               totalCart -= 1;
+               localStorage.setItem('cartNumbers',totalCart);
+               onLoadCartNumbers();
+               
+               $(this).parent().parent().remove(); 
+            }
         }
 
     })
-   // console.log(x);
 });
 
 //add or minus cart
@@ -239,8 +229,6 @@ $(document).on("click", ".symbolminus", function() {
  //   $(this).parent().parent().remove(); 
 //});
 //
-
-
 
 onLoadCartNumbers();
 displayCart();
