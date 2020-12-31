@@ -68,13 +68,6 @@ for(let i=0; i< carts.length; i++) {
         displayCart();
     })
 }
-for(let i=0; i< carts.length; i++) {
-    carts[i].addEventListener('click', () =>{
-        cartNumbers(products[i]);
-        totalCost(products[i]);
-        displayCart();
-    })
-}
 
 
 function onLoadCartNumbers(){
@@ -147,21 +140,29 @@ function displayCart() {
 
         productContainer.innerHTML = '';
         Object.values(cartItems).map(item => {
+
+            let x = item.price * item.incart;
             productContainer.innerHTML += `
             
-            <div class="container-purchase">
-                <div class="image-purchase">
-                    <img src="logo/${item.tag}.png">
-                </div>
-
-                <div class="text-purchase">
-                    <a href="" id="${item.tag}">${item.name}</a>
-                    <p>RM${item.price}</p>
-                    <a class="symbolminus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183); margin-left:20%;">-</a>
-                    <p class="quan" style="float:center;">${item.incart}</p>
-                    <a class="symbolplus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183);">+</a>
-                </div>
-            </div>
+            <table class='order-table'>
+                <tbody>
+                <tr>
+                    <td><img src='logo/${item.tag}.png' class='full-width'></img>
+                    </td>
+                    <td>
+                    <br> <span class='thin'>${item.name}</span>
+                    <br>Genre : ${item.genre}<br> <span class='thin small'>RM 5.00 (valid for 3 days)<br><span class='thin small'>Quantity : ${item.incart}<br></span>
+                    </td>
+    
+                </tr>
+                <tr>
+                    <td>
+                    <div class='price'>${x}</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+          <div class='line'></div>            
             `;
         });
 
@@ -169,7 +170,7 @@ function displayCart() {
         productContainer.innerHTML += `
    
         <div class="checkout">
-            <button type="button" onclick="location.href='payment/payment.html';"class="btn btn-outline-info"><svg
+            <button type="button" onclick="location.href='process-payment/cart.html';"class="btn btn-outline-info"><svg
                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-cart" viewBox="0 0 16 16">
                 <path

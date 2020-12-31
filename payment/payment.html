@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark" style="background-color: #000;">
+        <a class="navbar-brand" href="../index.html">
+          <img src="images/logo.png" style=" filter: invert(100%);-webkit-filter: invert(100%); margin-left: 40px;" width=150px; alt="">
+        </a>
+      </nav>
+    <div class='container'>
+        <div class='window'>
+          <div class='order-info'>
+            <div class='order-info-content'>
+              <h1 style="text-align: center;">Order Summary</h1>
+                      <div class='line'></div>
+
+                      <div class="cartNav">
+                        
+                      </div>          
+            </div>
+      </div>
+
+              <div class='credit-info'>
+                <div class='credit-info-content'>
+                  <table class='half-input-table'>
+                    <tr><td>Please select your card: </td><td><div class='dropdown' id='card-dropdown'><div class='dropdown-btn' id='current-card'>Visa</div>
+                      <div class='dropdown-select'>
+                      <ul>
+                        <li>Master Card</li>
+                        <li>American Express</li>
+                        </ul></div>
+                      </div>
+                     </td></tr>
+                  </table>
+                  <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
+                  Email Adress
+                  <form action="pay.php">
+                    <input type="email" class='input-field' required></input>
+                    Card Number
+                    <input type="number" class='input-field'></input>
+                    Card Holder
+                    <input type="text" class='input-field'></input>
+                  </form>
+                  
+                  <table class='half-input-table'>
+                    <tr>
+                      <td> Expires
+                        <input type="number" class='input-field'></input>
+                      </td>
+                      <td>CVC
+                        <input class='input-field'></input>
+                      </td>
+                    </tr>
+                  </table>
+                  <button class='pay-btn'>Checkout</button>
+      
+                </div>
+      
+              </div>
+            </div>
+      </div>
+</body>
+<script>
+  function pulldata(){
+        let calldata = localStorage.getItem("productsInCart");
+        
+        calldata = JSON.parse(calldata);
+        let container = document.querySelector(".cartNav");
+        
+        if(calldata && container) {
+          container.innerHTML = '';
+            Object.values(calldata).map(item => {
+              container.innerHTML += `
+              <table class='order-table'>
+                        <tbody>
+                          <tr>
+                            <td><img src='logo/${item.tag}.png' class='full-width'></img>
+                            </td>
+                            <td>
+                              <br> <span class='thin'>${item.name}</span>
+                              <br>Genre : ${item.genre}<br> <span class='thin small'>RM 5.00 (valid for 3 days)<br><span class='thin small'>Quantity : ${item.incart}<br></span>
+                            </td>
+              
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class='price'>RM${item.price * item.incart}.00</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class='line'></div>       
+          `;
+        
+          });
+          productContainer.innerHTML += `
+          <div class='total'>
+                <span style='float:left;'>
+                  <div class='thin dense'>VAT 19%</div>
+                  <div class='thin dense'>Delivery</div>
+                  TOTAL
+                </span>
+                <span style='float:right; text-align:right;'>
+                  <div class='thin dense'>$68.75</div>
+                  <div class='thin dense'>$4.95</div>
+                  $435.55
+                </span>
+              </div> `
+
+      }
+    }
+    pulldata();
+</script>
+<script>
+    var cardDrop = document.getElementById('card-dropdown');
+var activeDropdown;
+cardDrop.addEventListener('click',function(){
+  var node;
+  for (var i = 0; i < this.childNodes.length-1; i++)
+    node = this.childNodes[i];
+    if (node.className === 'dropdown-select') {
+      node.classList.add('visible');
+       activeDropdown = node; 
+    };
+})
+
+window.onclick = function(e) {
+  if (e.target.tagName === 'LI' && activeDropdown){
+    if (e.target.innerHTML === 'Master Card') {
+      document.getElementById('credit-card-image').src = 'https://dl.dropboxusercontent.com/s/2vbqk5lcpi7hjoc/MasterCard_Logo.svg.png';
+          activeDropdown.classList.remove('visible');
+      activeDropdown = null;
+      e.target.innerHTML = document.getElementById('current-card').innerHTML;
+      document.getElementById('current-card').innerHTML = 'Master Card';
+    }
+    else if (e.target.innerHTML === 'American Express') {
+         document.getElementById('credit-card-image').src = 'https://dl.dropboxusercontent.com/s/f5hyn6u05ktql8d/amex-icon-6902.png';
+          activeDropdown.classList.remove('visible');
+      activeDropdown = null;
+      e.target.innerHTML = document.getElementById('current-card').innerHTML;
+      document.getElementById('current-card').innerHTML = 'American Express';      
+    }
+    else if (e.target.innerHTML === 'Visa') {
+         document.getElementById('credit-card-image').src = 'https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png';
+          activeDropdown.classList.remove('visible');
+      activeDropdown = null;
+      e.target.innerHTML = document.getElementById('current-card').innerHTML;
+      document.getElementById('current-card').innerHTML = 'Visa';
+    }
+  }
+  else if (e.target.className !== 'dropdown-btn' && activeDropdown) {
+    activeDropdown.classList.remove('visible');
+    activeDropdown = null;
+  }
+}
+
+</script>
+</html>
