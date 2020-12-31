@@ -93,15 +93,17 @@ function setItems(product) {
                 ...cartItems,
                 [product.tag]: product
             }
+            cartItems[product.tag].incart = 0;
         }
         cartItems[product.tag].incart += 1;
-    } else {
+
+    } else if(cartItems == null){
+
         product.incart = 1;
         cartItems = {
             [product.tag]: product
         }
     }
-    
     localStorage.setItem("productsInCart", JSON.stringify(cartItems));
 }
 
@@ -123,6 +125,7 @@ function displayCart() {
     let productContainer = document.querySelector(".cartNav");
 
     if(cartItems && productContainer ) {
+
         productContainer.innerHTML = '';
         Object.values(cartItems).map(item => {
             productContainer.innerHTML += `
@@ -136,12 +139,14 @@ function displayCart() {
                     <a href="" id="${item.tag}">${item.name}</a>
                     <p>RM${item.price}</p>
                     <a class="symbolminus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183); margin-left:20%;">-</a>
-                    <p style="float:center;">${item.incart}</p>
+                    <p class="quan" style="float:center;">${item.incart}</p>
                     <a class="symbolplus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183);">+</a>
                 </div>
             </div>
             `;
         });
+
+
         productContainer.innerHTML += `
    
         <div class="checkout">
@@ -165,15 +170,18 @@ $(document).on("click", ".symbolplus", function() {
     totalCart = parseInt(totalCart);
     totalCart += 1;
     localStorage.setItem('cartNumbers',totalCart);
-    //onLoadCartNumbers();
     
+    //update totalCost in local storage
+    let cartCost = localStorage.getItem('totalCost');
+    cartCost = parseInt(cartCost);
+
     let cart = localStorage.getItem("productsInCart");
     cart = JSON.parse(cart);
     let x = Object.values(cart).map(item => {
         if(item.tag == this.id){
             item.incart += 1;
-            console.log(item.incart);
             localStorage.setItem("productsInCart", JSON.stringify(cart));
+            localStorage.setItem("totalCost" , cartCost + item.price);
             displayCart();
             onLoadCartNumbers();
         }
@@ -182,8 +190,13 @@ $(document).on("click", ".symbolplus", function() {
 
 //delete cart
 $(document).on("click", ".symbolminus", function() { 
+
+    let cartCost = localStorage.getItem('totalCost');
+    cartCost = parseInt(cartCost);
+    
     let cart = localStorage.getItem("productsInCart");
     cart = JSON.parse(cart);  
+
     let x = Object.values(cart).map(item => {
         if(item.incart > 1){
             if(item.tag == this.id){
@@ -191,23 +204,21 @@ $(document).on("click", ".symbolminus", function() {
                 item.incart -= 1;
                 localStorage.setItem("productsInCart", JSON.stringify(cart));
                 displayCart();
-                console.log(item.incart);
                 //update cart numbers
                 let totalCart = localStorage.getItem("cartNumbers");
                 totalCart = parseInt(totalCart);
                 totalCart -= 1;
                 localStorage.setItem('cartNumbers',totalCart);
+                localStorage.setItem('totalCost' , cartCost - item.price);
                 onLoadCartNumbers();
+
+
             }
-        }else{
+        }else if(item.incart == 1){
             if(item.tag == this.id){
                //update quantity containerd
-               //console.log(cart[this.id]);
-               console.log(cart[this.id].incart -= 1);
+               cart[this.id].incart -= 1;
                delete cart[this.id];
-               //console.log(item.incart);
-               //console.log(cart);
-               localStorage.setItem('productsInCart', JSON.stringify(cart));
 
                //update cart numbers
                let totalCart = localStorage.getItem("cartNumbers");
@@ -215,7 +226,10 @@ $(document).on("click", ".symbolminus", function() {
                totalCart -= 1;
                localStorage.setItem('cartNumbers',totalCart);
                onLoadCartNumbers();
-               
+               deletePayNow();
+               localStorage.setItem('productsInCart', JSON.stringify(cart));
+               localStorage.setItem('totalCost' , cartCost - item.price);
+
                $(this).parent().parent().remove(); 
             }
         }
@@ -223,12 +237,19 @@ $(document).on("click", ".symbolminus", function() {
     })
 });
 
-//add or minus cart
+function deletePayNow(){
+    let y = document.querySelector(".container-purchase");
+    if(y == null){
+        console.log("ha");
+        document.querySelector(".cartNav").innerHTML = "";
 
+    }
+}
+
+//add or minus cart
 //$(document).on("click", ".symbol", function() { 
  //   $(this).parent().parent().remove(); 
 //});
 //
-
 onLoadCartNumbers();
 displayCart();
