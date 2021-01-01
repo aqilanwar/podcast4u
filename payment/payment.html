@@ -20,8 +20,8 @@
                       <div class='line'></div>
 
                       <div class="cartNav">
-                        
-                      </div>          
+    
+                      </div>   
             </div>
       </div>
 
@@ -82,8 +82,8 @@
                             <td><img src='logo/${item.tag}.png' class='full-width'></img>
                             </td>
                             <td>
-                              <br> <span class='thin'>${item.name}</span>
-                              <br>Genre : ${item.genre}<br> <span class='thin small'>RM 5.00 (valid for 3 days)<br><span class='thin small'>Quantity : ${item.incart}<br></span>
+                              <br><span class='thin'>${item.name}</span>
+                              <br><small>Genre : ${item.genre}<br> <span class='thin small'>RM 5.00 (valid for 3 days)</small><br><span class='thin small'>Quantity : ${item.incart}<br></span>
                             </td>
               
                           </tr>
@@ -97,23 +97,32 @@
                       <div class='line'></div>       
           `;
           });
-          productContainer.innerHTML += `
-          <div class='total'>
-                <span style='float:left;'>
-                  <div class='thin dense'>VAT 19%</div>
-                  <div class='thin dense'>Delivery</div>
-                  TOTAL
-                </span>
-                <span style='float:right; text-align:right;'>
-                  <div class='thin dense'>$68.75</div>
-                  <div class='thin dense'>$4.95</div>
-                  $435.55
-                </span>
-              </div> `
+          container.innerHTML += `
+          
+          <table class='order-table'>
+                          <tbody>
+                            <tr>
+                              <td style="text-align:left;">
+                                <strong> TOTAL</strong>
+                              </td>
+                              <td style="text-align:right;">
+                                <div class='price'><strong>RM<span class='totalPrice'></span>.00 </strong></div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class='line'></div>   
+                        <div class='line'></div>   
 
+            ` ;
       }
     }
     pulldata();
+</script>
+
+<script>
+  x = localStorage.getItem('totalCost');
+  document.querySelector(".totalPrice").innerHTML = x;
 </script>
 <script>
     var cardDrop = document.getElementById('card-dropdown');

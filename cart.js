@@ -16,7 +16,7 @@ let products = [
 
     },
     {
-        name: 'Politic Crisis',
+        name: 'Political Crisis',
         tag: 'pc',
         price: 5,
         incart: 0,
