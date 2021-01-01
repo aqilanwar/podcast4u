@@ -105,7 +105,6 @@ function setItems(product) {
                 ...cartItems,
                 [product.tag]: product
             }
-            cartItems[product.tag].incart = 0;
         }
         cartItems[product.tag].incart += 1;
 
@@ -260,9 +259,7 @@ $(document).on("click", ".symbolminus", function() {
 function deletePayNow(){
     let y = document.querySelector(".container-purchase");
     if(y == null){
-        console.log("ha");
         document.querySelector(".cartNav").innerHTML = "";
-
     }
 }
 

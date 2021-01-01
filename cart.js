@@ -68,13 +68,6 @@ for(let i=0; i< carts.length; i++) {
         displayCart();
     })
 }
-for(let i=0; i< carts.length; i++) {
-    carts[i].addEventListener('click', () =>{
-        cartNumbers(products[i]);
-        totalCost(products[i]);
-        displayCart();
-    })
-}
 
 
 function onLoadCartNumbers(){
@@ -259,7 +252,6 @@ $(document).on("click", ".symbolminus", function() {
 function deletePayNow(){
     let y = document.querySelector(".container-purchase");
     if(y == null){
-        console.log("ha");
         document.querySelector(".cartNav").innerHTML = "";
 
     }

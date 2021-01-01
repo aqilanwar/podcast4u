@@ -140,10 +140,9 @@
 
 
 
-
    @media screen and (max-height: 450px) {
       .sidenav {
-         width: 100%;
+        max-width: 100%;
       }
 
       .sidenav a {
