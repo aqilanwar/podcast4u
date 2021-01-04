@@ -21,11 +21,7 @@
 }
  body {
      color: #000000;
-     font-size: 14px;
      font-family: 'poppins', sans-serif;
-     line-height: 1.80857;
-     font-weight: normal;
-     overflow-x: hidden;
 }
  a {
      color: #000000;
@@ -44,7 +40,7 @@
      padding: 0 0 10px 0;
      font-weight: normal;
      line-height: normal;
-     color: #111111;
+     color: #ffffff;
      margin: 0 
 }
  h1 {
@@ -77,11 +73,11 @@
 }
  
    .sidenav {
-      background-color: #000000;
+      background-color: #ffffff;
       box-shadow: 0px 10px 100px rgb(43, 43, 43);
       height: 100%;
       width: 0;
-      position: fixed;
+      position: relative;
       z-index: 1;
       top: 0;
       right: 0;
@@ -142,7 +138,7 @@
 
    @media screen and (max-height: 450px) {
       .sidenav {
-        max-width: 100%;
+        width: 100%;
       }
 
       .sidenav a {
@@ -161,8 +157,7 @@
 }
  p {
      margin: 0px;
-     font-weight: 300;
-     font-size: 15px;
+     font-size: 20px;
      line-height: 24px;
 }
  a {
@@ -1670,9 +1665,9 @@ ul.locat_icon li a{
 .Books .book-box figure {margin: 0px;} 
 
 .Books p {
-     padding: 30px 46px;
     color: #141012;
-    font-size: 17px;
+    padding-bottom: 20px;
+    font-size: 20px;
     line-height: 30px;
     text-align: center;
 }

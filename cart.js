@@ -144,15 +144,15 @@ function displayCart() {
             
             <div class="container-purchase">
                 <div class="image-purchase">
-                    <img src="logo/${item.tag}.png">
+                    <img  data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" src="logo/${item.tag}.png">
                 </div>
 
                 <div class="text-purchase">
-                    <a href="" id="${item.tag}">${item.name}</a>
-                    <p>RM${item.price}</p>
-                    <a class="symbolminus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183); margin-left:20%;">-</a>
-                    <p class="quan" style="float:center;">${item.incart}</p>
-                    <a class="symbolplus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183);">+</a>
+                    <a  data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" id="${item.tag}">${item.name}</a>
+                    <p  data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" >RM${item.price}</p>
+                    <a  data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" class="symbolminus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183); margin-left:20%;">-</a>
+                    <p  data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" class="quan" style="float:center;">${item.incart}</p>
+                    <a  data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" class="symbolplus" id="${item.tag}" href="javascript:openNav();" style="display:inline-block; color:rgb(12, 209, 183);">+</a>
                 </div>
             </div>
             `;
@@ -162,13 +162,7 @@ function displayCart() {
         productContainer.innerHTML += `
    
         <div class="checkout">
-            <button type="button" onclick="location.href='payment/payment.html';"class="btn btn-outline-info"><svg
-                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-cart" viewBox="0 0 16 16">
-                <path
-                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg></a>Pay Now
-              </button>
+          <a class="btn btn-success btn-xl sr-button" role="button" data-aos="zoom-in" data-aos-duration="400" data-aos-once="true" href="payment/payment.html">PAY NOW</a>
         </div>
         </div>
         `;
