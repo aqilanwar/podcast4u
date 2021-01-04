@@ -251,10 +251,6 @@ function deletePayNow(){
     }
 }
 
-//add or minus cart
-//$(document).on("click", ".symbol", function() { 
- //   $(this).parent().parent().remove(); 
-//});
-//
+deletePayNow();
 onLoadCartNumbers();
 displayCart();
