@@ -232,10 +232,9 @@ $(document).on("click", ".symbolminus", function() {
                totalCart -= 1;
                localStorage.setItem('cartNumbers',totalCart);
                onLoadCartNumbers();
-               deletePayNow();
                localStorage.setItem('productsInCart', JSON.stringify(cart));
                localStorage.setItem('totalCost' , cartCost - item.price);
-
+               deletePayNow();
                $(this).parent().parent().remove(); 
             }
         }
@@ -243,14 +242,14 @@ $(document).on("click", ".symbolminus", function() {
     })
 });
 
-function deletePayNow(){
-    let y = document.querySelector(".container-purchase");
-    if(y == null){
+function deletePayNow() { 
+    let x = localStorage.getItem('cartNumbers');
+    console.log(x); 
+    if(x == 0){
         document.querySelector(".cartNav").innerHTML = "";
-
     }
 }
 
-deletePayNow();
 onLoadCartNumbers();
+deletePayNow();
 displayCart();
